@@ -3,11 +3,11 @@
 <div markdown="2021-05-28">
 
 # 2021-05-28
-  ###### [ 탭 네비게이션 ]
+  ###### [ 탭 네비게이션 ](/NaviApp/app(past)/App_tab.js)
 
-  ###### [ 스택 네비게이션 ]
+  ###### [ 스택 네비게이션 ](/NaviApp/app(past)/App_stack.js)
 
-  ###### [ 드로어 네비게이션 ]
+  ###### [ 드로어 네비게이션 ](/NaviApp/app(past)/App_drawer.js)
 ----------------------------
 </div>
 </details>
