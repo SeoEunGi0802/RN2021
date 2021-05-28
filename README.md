@@ -4,12 +4,185 @@
 
 # 2021-05-28
   #### [ 탭 네비게이션 ](/NaviApp/app(past)/App_tab.js)
+  1. 모듈 다운로드 : npm install @react-navigation/bottom-tabs
+  2. 코드 입력
+  ```
+  import * as React from 'react';
+  import { Text, View } from 'react-native';
+  import { NavigationContainer } from '@react-navigation/native';
+  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+  
+  function HomeScreen() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home!</Text>
+      </View>
+    );
+  }
+  
+  function SettingsScreen() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+  
+  const Tab = createBottomTabNavigator();
+  
+  function App() {
+    return (
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );
+  }
+  
+  export default App;
+  ```
 
   #### [ 스택 네비게이션 ](/NaviApp/app(past)/App_stack.js)
+  1. 모듈 다운로드 : npm install @react-navigation/stack
+  2. 코드 입력
+  ```
+  import * as React from 'react';
+  import { Button, View } from 'react-native';
+  import { createDrawerNavigator } from '@react-navigation/drawer';
+  import { NavigationContainer } from '@react-navigation/native';
+  
+  function HomeScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+          <Button
+          title="Go to Details"
+          onPress={() => navigation.navigate('Details')}
+          />
+        </View>
+    );
+  }
+  
+  function DetailsScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+          <Button
+          title="Go to Details... again"
+          onPress={() => navigation.push('Details')}
+          />
+          <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+          <Button title="Go back" onPress={() => navigation.goBack()} />
+          <Button
+          title="Go back to first screen in stack"
+          onPress={() => navigation.popToTop()}
+          />
+      </View>
+    );
+  }
+  
+  const Stack = createStackNavigator();
+  
+  function App() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+  
+  export default App;
+  ```
 
   #### [ 드로어 네비게이션 ](/NaviApp/app(past)/App_drawer.js)
+  1. 모듈 다운로드 : npm install @react-navigation/drawer
+  2. 코드 입력
+  ```
+  import * as React from 'react';
+  import { Button, View } from 'react-native';
+  import { createDrawerNavigator } from '@react-navigation/drawer';
+  import { NavigationContainer } from '@react-navigation/native';
+  
+  function HomeScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+        onPress={() => navigation.navigate('Notifications')}
+        title="Go to notifications"
+        />
+      </View>
+    );
+  }
+  
+  function NotificationsScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button onPress={() => navigation.goBack()} title="Go back home" />
+        </View>
+  }
+  
+  const Drawer = createDrawerNavigator();
+  
+  function App() {
+    return (
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    );
+  }
+  
+  export default App;
+  ```
 
   ### [expo-cli를 이용하여 프로젝트를 생성](/HelloExpo/)
+   1. npm install -g expo-cli (cmd 관리자 권한으로 실행)
+   2. expo --version으로 설치되었는지 확인
+   3. expo init [porject-name]
+
+  #### [ expo-cli를 이용한 탭 네비게이션 ](/HelloExpo/App.js)
+  1. 모듈 다운로드 : npm install @react-navigation/material-bottom-tabs react-native-paper
+  2. 코드 입력
+  ```
+  import * as React from 'react';
+  import { BottomNavigation, Text } from 'react-native-paper';
+  
+  const MusicRoute = () => <Text>Music</Text>;
+  const AlbumsRoute = () => <Text>Albums</Text>;
+  const RecentsRoute = () => <Text>Recents</Text>;
+  
+  const App = () => {
+    const [index, setIndex] = React.useState(0);
+    const [routes] = React.useState([
+      { key: 'music', title: 'Music', icon: 'queue-music' },
+      { key: 'albums', title: 'Albums', icon: 'album' },
+      { key: 'recents', title: 'Recents', icon: 'history' },
+    ]);
+    
+    const renderScene = BottomNavigation.SceneMap({
+      music: MusicRoute,
+      albums: AlbumsRoute,
+      recents: RecentsRoute,
+    });
+    
+    return (
+      <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      />
+    );
+  };
+  
+  export default App;
+  ```
 ----------------------------
 </div>
 </details>
