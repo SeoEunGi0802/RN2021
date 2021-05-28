@@ -8,6 +8,8 @@
   #### [ 스택 네비게이션 ](/NaviApp/app(past)/App_stack.js)
 
   #### [ 드로어 네비게이션 ](/NaviApp/app(past)/App_drawer.js)
+
+  ### [expo-cli를 이용하여 프로젝트를 생성](/HelloExpo/)
 ----------------------------
 </div>
 </details>
