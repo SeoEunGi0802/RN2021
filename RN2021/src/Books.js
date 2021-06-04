@@ -152,5 +152,4 @@ const mapDispatchToProps = {
     dispatchRemoveBook: (book) => removeBook(book)
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(Books)
