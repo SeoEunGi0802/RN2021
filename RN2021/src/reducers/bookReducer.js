@@ -1,5 +1,5 @@
 import uuidV4 from 'uuid/v4'
-// import uuidV4 from 'uuid/v4'
+// import uuidV4 from '../node_modules/uuid/v4'
 import { ADD_BOOK, REMOVE_BOOK } from '../actions'
 
 const initialState = {
