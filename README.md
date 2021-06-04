@@ -3,7 +3,79 @@
 <div markdown="2021-06-04">
 
 # 2021-06-04
-  #### 
+  #### 리덕스란?
+  + 리덕스는 "자바스크립트 앱을 위한 예측 가능한 state 컨테이너"로 정의한다.
+  + 앱에 단 하나밖에 없는 전역 상태의 객체이다.
+  + 이 전역 state객체는 리액트 네이티브 컴포넌트에서 props로 전달된다.
+  + 리덕스 state의 데이터가 변경되면, 변경된 새 데이터가 전체 앱에 props로 전달한다.
+  + 리덕스는 앱의 state를 모두 store라는 곳으로 이동시켜 데이터 관리를 편리하게 한다.
+  + 리덕스는 리액트의 context라는 기능을 이용해서 동작한다.
+  + context는 전역 state를 만들고 관리하는 매커니즘이다.
+
+  #### context를 이용해서 앱의 전역 상태 관리하기
+  + context는 전역변수를 만드는 React API이다.
+  + context를 전달받는 컴포넌트는 context를 만든 컴포넌트의 자식 컴포넌트라야 한다.
+  + 일반적으로 데이터를 전달하려면 컴포넌트 구조의 단계별로 props를 전달하지만
+    -> context를 이용하면 props를 사용할 필요가 없다.
+    -> 왜냐하면 전역 객체이기 때문에 앱 전체에서 context를 참조할 수 있기 때문이다.
+  + [ 예제 8.1 ](/RN2021/app(past)/ch8/App8-1.js)
+
+  #### 리액트 네이티브 앱에 리덕스 구현하기 - 도서 목록을 관리하는 앱
+  + 기존의 프로젝트를 사용
+  + 리덕스 관련 의존성 라이브러리 설치
+    > npm install redux react-redux
+  + 프로젝트 root에 src폴더를 생성, 폴더에 Books.js / actions.js파일 추가
+  + src폴더에 reducers폴더 생성, 폴더에 bookReducer.js / index.js파일 추가
+
+  #### 리덕스 리듀서로 리덕스 상태 관리하기
+  + reducer는 객체를 반환하는 함수로, 이를 묶어서 전역 state를 만든다.
+  + [src/reducers/index.js파일에 앱에서 사용할 모든 reducer를 결합해서 전역 state를 구성한다.](/RN2021/app(past)/ch8/src/reducers/index8-3.js)
+  + 하나의 reducer(bookReducer.js)만 사용하여 만든다.
+  + bookReducer에 저장할 데이터는 도서 목록을 저장하는 배열이다.
+  + bookReducer는 하나의 state를 만들고 반환한다.
+  + 이 state는 이후에 리덕스 스토어에서 참조할 수 있게 된다.
+  + [bookReducer.js에 첫번째 reducer를 만든다.](/RN2021/app(past)/ch8/src/reducers/bookReducer8-2.js)
+  + 예제 8.2에서는 state를 반환하는 역할만 하는 함수를 하나 만든다.
+
+  #### provider를 추가하고 스토어 만들기
+  + [프로젝트 root에 App.js파일을 생성한다.](/RN2021/app(past)/ch8/App8-4.js)
+  + provider는 자식 컴포넌트에 데이터를 전달하는 부모 컴포넌트이다.
+  + 리덕스에서 provider는 앱 전체에 전역 state를 전달 한다.
+
+  #### connect 함수를 이용해서 데이터 참조하기
+  #### [예제 8.5](/RN2021/app(past)/ch8/src/Books8-5.js)
+  + react-redux의 connext함수를 이용해 자식 컴포넌트에서 store를 참조한다.
+  + connect 함수의 첫 번째 매개변수는 리덕스의 전역 state를 참조할 수 있게 해주는 함수이다. connect (args) (args)
+  + connect 함수는 다른 함수를 반환하는 커링 함수이다.
+  + 첫 번째 매개변수로 실행된 결과로 생성된 객체는 두 번째 매개변수로 전달된 컴포넌트의 props로 사용할 수 있다.
+
+  #### 액션 추가하기
+  #### [에제 8.6](/RN2021/app(past)/ch8/src/Books8-6.js)
+  + 리덕스 스토어의 books 배열에 도서를 추가하는 기능을 구현한다.
+  + [도서추가 기능을 만들기 위해 action을 사용한다.](/RN2021/app(past)/ch8/src/actions8-7.js)
+  + action은 스토어에 데이터를 보내고, 리듀서를 업데이트하는 객체를 반환하는 함수이다.
+  + 스토어의 데이터는 action을 통해서만 변경할 수 있다.
+  + 각 action은 리듀서가 사용할 수 있도록 type 속성을 포함한다.
+  + 리덕스의 dispatch 함수로 action을 호출하면, 앱의 모든 리듀서에 action이 전달된다.
+  + [리듀서가 action을 전달받으면, action의 type 속성을 확인하고 리듀서와 관련된 action에 따라 리듀서가 반환한 것을 업데이트 한다.](/RN2021/app(past)/ch8/src/reducers/bookReducer8-8.js)
+  + type이 ADD_BOOK이면, 기존의 모든 도서 목록에 새 도서가 포함된 갱신된 books배열을 변환한다.
+  + 이것으로 리덕스를 이용하기 위한 모든 리덕스와 관련된 설정이 끝이다.
+
+  #### [예제 8.9](/RN2021/app(past)/ch8/src/Books8-9.js)
+  #### [예제 8.9](/RN2021/app(past)/ch8/src/Books8-10.js)
+  #### [예제 8.9](/RN2021/app(past)/ch8/src/Books8-11.js)
+  + initialState 변수를 추가해 로컬 컴포넌트 state를 저장하는 데 사용한다.
+  + 클래스의 내용에는 컴포넌트의 state, state를 업데이트하는 메서드, 리덕스에 액션을 보내는 메서드 3가지를 추가한다.
+  + addBook메서드는 connect함수의 props로 참조할 수 있는 함수인 dispatchAddBook을 호출한다.
+  + dispatchAddBook함수는 전체 state를 매개변수로 전달 받는데 이때 state는 name과 aurhor속성을 포함한 객체이다.
+
+  #### 리듀서에서 리덕스 스토어에 저장된 내용 지우기
+  + 도서 목록에서 도서를 삭제하는 것처럼 배열에서 항목을 제거하려면, 먼저 도서를 고유하게 식별할 수 있어야 한다.
+  + 이를 위해 uuid라이브러리를 사용한다. 
+    > npm install uuid
+  + 리듀서에서 initialState의 books 배열에 있는 항목에 고유 식별자를 부여한다.
+  + [reducers/bookReducers.js파일에 예제8.12와 같이 수정한다.](/RN2021/app(past)/ch8/src/reducers/bookReducer8-12.js)
+  + [actions.js파일에 새 액션을 추가한다. 에제 8.13](/RN2021/app(past)/ch8/src/actions8-13.js)
 ----------------------------
 </div>
 </details>
