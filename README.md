@@ -29,16 +29,16 @@
 
   #### 리덕스 리듀서로 리덕스 상태 관리하기
   + reducer는 객체를 반환하는 함수로, 이를 묶어서 전역 state를 만든다.
-  + [src/reducers/index.js파일에 앱에서 사용할 모든 reducer를 결합해서 전역 state를 구성한다.](/RN2021/app(past)/ch8/src/reducers/index8-3.js)
+  + [src/reducers/index.js파일에 앱에서 사용할 모든 reducer를 결합해서 전역 state를 구성한다. 예제 8.3](/RN2021/app(past)/ch8/src/reducers/index8-3.js)
   + 하나의 reducer(bookReducer.js)만 사용하여 만든다.
   + bookReducer에 저장할 데이터는 도서 목록을 저장하는 배열이다.
   + bookReducer는 하나의 state를 만들고 반환한다.
   + 이 state는 이후에 리덕스 스토어에서 참조할 수 있게 된다.
-  + [bookReducer.js에 첫번째 reducer를 만든다.](/RN2021/app(past)/ch8/src/reducers/bookReducer8-2.js)
+  + [bookReducer.js에 첫번째 reducer를 만든다. 예제 8.2](/RN2021/app(past)/ch8/src/reducers/bookReducer8-2.js)
   + 예제 8.2에서는 state를 반환하는 역할만 하는 함수를 하나 만든다.
 
   #### provider를 추가하고 스토어 만들기
-  + [프로젝트 root에 App.js파일을 생성한다.](/RN2021/app(past)/ch8/App8-4.js)
+  + [프로젝트 root에 App.js파일을 생성한다. 예제 8.4](/RN2021/app(past)/ch8/App8-4.js)
   + provider는 자식 컴포넌트에 데이터를 전달하는 부모 컴포넌트이다.
   + 리덕스에서 provider는 앱 전체에 전역 state를 전달 한다.
 
@@ -52,12 +52,12 @@
   #### 액션 추가하기
   #### [에제 8.6](/RN2021/app(past)/ch8/src/Books8-6.js)
   + 리덕스 스토어의 books 배열에 도서를 추가하는 기능을 구현한다.
-  + [도서추가 기능을 만들기 위해 action을 사용한다.](/RN2021/app(past)/ch8/src/actions8-7.js)
+  + [도서추가 기능을 만들기 위해 action을 사용한다. 예제 8.7](/RN2021/app(past)/ch8/src/actions8-7.js)
   + action은 스토어에 데이터를 보내고, 리듀서를 업데이트하는 객체를 반환하는 함수이다.
   + 스토어의 데이터는 action을 통해서만 변경할 수 있다.
   + 각 action은 리듀서가 사용할 수 있도록 type 속성을 포함한다.
   + 리덕스의 dispatch 함수로 action을 호출하면, 앱의 모든 리듀서에 action이 전달된다.
-  + [리듀서가 action을 전달받으면, action의 type 속성을 확인하고 리듀서와 관련된 action에 따라 리듀서가 반환한 것을 업데이트 한다.](/RN2021/app(past)/ch8/src/reducers/bookReducer8-8.js)
+  + [리듀서가 action을 전달받으면, action의 type 속성을 확인하고 리듀서와 관련된 action에 따라 리듀서가 반환한 것을 업데이트 한다. 예제 8.8](/RN2021/app(past)/ch8/src/reducers/bookReducer8-8.js)
   + type이 ADD_BOOK이면, 기존의 모든 도서 목록에 새 도서가 포함된 갱신된 books배열을 변환한다.
   + 이것으로 리덕스를 이용하기 위한 모든 리덕스와 관련된 설정이 끝이다.
 
