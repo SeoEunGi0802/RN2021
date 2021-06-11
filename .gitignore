@@ -59,6 +59,6 @@ buck-out/
 /ios/Pods/
 
 # zip
-/app.zip
-
+RN2021/app(middle_test)/app.zip
+RN2021/app(final_test)/app.zip
 .idea
