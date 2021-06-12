@@ -3,7 +3,7 @@
 <div markdown="2021-06-11">
 
 # 2021-06-11
- > [기말고사](/RN2021/app(final_test)))
+ > [기말고사](/RN2021/app(final_test))
 ----------------------------
 </div>
 </details>
